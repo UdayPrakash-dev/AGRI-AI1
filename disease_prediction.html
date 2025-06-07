@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Disease Predictor</title>
+  <link rel = "stylesheet" href = "disease_style.css">
+</head>
+<body>
+    
+    <div class = "top-section" >
+        <a>
+            <img src = "https://www.letsnurture.com/wp-content/uploads/2021/02/Plant-disease-classifier-with-ai-blog-banner.jpg" alt = "cool image" height = "300px" class="top-image">
+        </a>
+        <h1 class = "main-heading"> AI-Powered Plant Disease Predictor</h1>
+    </div>
+
+  <div class="container">
+   
+    <h2>Plant Disease Prediction</h2>
+    
+    <!-- Upload Input -->
+    <input type="file" id="fileInput" accept="image/*" multiple>
+    
+    <!-- Image Preview Section -->
+    <div class="preview" id="imagePreview"></div>
+
+    <!-- Predict Button -->
+    <button class="btn" id="predictBtn">Predict Disease</button>
+
+    <!-- Status Message -->
+    <div class="status-text" id="statusMsg"></div>
+
+    <!-- Get Treatment Button -->
+    <button class="btn" id="treatmentBtn">Get Treatment</button>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById("fileInput");
+    const preview = document.getElementById("imagePreview");
+    const predictBtn = document.getElementById("predictBtn");
+    const treatmentBtn = document.getElementById("treatmentBtn");
+    const statusMsg = document.getElementById("statusMsg");
+
+    // Step 1: Show preview and Predict button
+    fileInput.addEventListener("change", () => {
+      preview.innerHTML = "";
+      statusMsg.textContent = "";
+      treatmentBtn.style.display = "none";
+
+      const files = fileInput.files;
+      if (files.length > 0) {
+        [...files].forEach(file => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            preview.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        });
+
+        predictBtn.style.display = "inline-block";
+      } else {
+        predictBtn.style.display = "none";
+      }
+    });
+
+    // Step 2: Simulate Prediction
+    predictBtn.addEventListener("click", () => {
+      statusMsg.textContent = "Predicting disease...";
+      setTimeout(() => {
+        statusMsg.textContent = "Prediction: Tomato Leaf Spot Detected.";
+        treatmentBtn.style.display = "inline-block";
+      }, 1500);
+    });
+
+    // Step 3: Show Treatment Placeholder
+    treatmentBtn.addEventListener("click", () => {
+      alert("Redirecting to treatment info (not implemented yet).");
+    });
+  </script>
+
+</body>
+</html>
