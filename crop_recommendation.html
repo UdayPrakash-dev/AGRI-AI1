@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crop Recommendations - AgriAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel ="stylesheet" href = "style_crop.css">
+</head>
+<body>
+  <h1>Crop Recommendations</h1>
+  <div class="background-container">
+  <img src="https://p4.itc.cn/q_70/images03/20211020/2cecbe2f35214f0d9badfc146d6bacb2.gif" alt="Background GIF" />
+</div>
+  
+  <form id="cropForm">
+    <label for="ph">Soil pH</label>
+    <input type="number" id="ph" name="ph" step="0.1" min="0" max="14" placeholder="Enter soil pH" required />
+  
+    <label for="moisture">Soil Moisture (%)</label>
+    <input type="number" id="moisture" name="moisture" min="0" max="100" placeholder="Enter moisture %" required />
+ 
+    <label for="nitrogen">Nitrogen (N) Level (mg/kg)</label>
+    <input type="number" id="nitrogen" name="nitrogen" min="0" placeholder="Enter Nitrogen level" required />
+
+    <label for="phosphorus">Phosphorus (P) Level (mg/kg)</label>
+    <input type="number" id="phosphorus" name="phosphorus" min="0" placeholder="Enter Phosphorus level" required />
+
+    <label for="potassium">Potassium (K) Level (mg/kg)</label>
+    <input type="number" id="potassium" name="potassium" min="0" placeholder="Enter Potassium level" required />
+
+    <label for="temperature">Soil Temperature (°C)</label>
+    <input type="number" id="temperature" name="temperature" step="0.1" placeholder="Enter temperature" required />
+
+    <label for="Rainfall">RainFall (in mm) </label>
+    <input type="number" id="rainfall" name="rainfall" step="0.1" placeholder="Enter rainfall level" required />
+    
+    <button type="submit">Get Crop Recommendation</button>
+  </form>
+
+    <div id="recommendation">
+    <h2 id="plantName"></h2>
+    <img id="plantImage" src="https://th.bing.com/th/id/OIP.dIuEjwv4gNinj4k8sTSu0AAAAA?r=0&rs=1&pid=ImgDetMain" height = "200" alt="Recommended Plant" />
+  </div>
+<!-- 
+  <script>
+    // Example: handle form submissions here (for now just prevent reload)
+    const forms = document.querySelectorAll("form");
+    forms.forEach(form => {
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+        alert(`Submitted ${form.querySelector("input").name}: ${form.querySelector("input").value}`);
+        // Here you can call your API or handle form data further
+      });
+    });
+  </script> -->
+
+
+
+   <script>
+    document.getElementById('cropForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Get form values
+      const ph = parseFloat(document.getElementById('ph').value);
+      const moisture = parseFloat(document.getElementById('moisture').value);
+      const nitrogen = parseInt(document.getElementById('nitrogen').value);
+      const phosphorus = parseInt(document.getElementById('phosphorus').value);
+      const potassium = parseInt(document.getElementById('potassium').value);
+
+      // Validation
+      if (
+        isNaN(ph) || ph < 0 || ph > 14 ||
+        isNaN(moisture) || moisture < 0 || moisture > 100 ||
+        isNaN(nitrogen) || nitrogen < 0 ||
+        isNaN(phosphorus) || phosphorus < 0 ||
+        isNaN(potassium) || potassium < 0
+      ) {
+        alert('Please enter valid values for all parameters.');
+        return;
+      }
+
+      // Simple recommendation logic (replace with real one later)
+      // Example: just pick a plant based on pH and moisture
+      let plantName = '';
+      let plantImg = '';
+
+      if (ph >= 6 && ph <= 7.5 && moisture > 40) {
+        plantName = 'Tomato';
+        plantImg = 'https://m.media-amazon.com/images/I/71DYmqoq-VL._SL1024_.jpg';
+      } else if (ph < 6 && moisture < 40) {
+        plantName = 'Potato';
+        plantImg = 'https://images.pexels.com/photos/144248/potatoes-vegetables-erdfrucht-bio-144248.jpeg?cs=srgb&dl=potatoes-144248.jpg&fm=jpg';
+      } else {
+        plantName = 'Corn';
+        plantImg = 'https://wallpapercave.com/wp/wp2570201.jpg';
+      }
+
+      // Show recommendation with smooth transition
+      const recDiv = document.getElementById('recommendation');
+      const plantNameEl = document.getElementById('plantName');
+      const plantImageEl = document.getElementById('plantImage');
+
+      plantNameEl.textContent = plantName;
+      plantImageEl.src = plantImg;
+      plantImageEl.alt = plantName;
+
+      recDiv.classList.remove('show'); // reset opacity for animation
+      setTimeout(() => {
+        recDiv.classList.add('show');
+      }, 100);
+    });
+  </script>
+</body>
+</html>
