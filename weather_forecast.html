@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Weather Forecast</title>
+  <style>
+    /* Reset & base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #eafaf1;
+  color: #2c3e50;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Main container like your other forms */
+.container {
+  background: white;
+  max-width: 450px;
+  width: 100%;
+  padding: 30px 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* Heading */
+.container h2 {
+  color: #4a148c;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+/* Input field */
+input[type="text"] {
+  width: 50%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1.5px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #6a1b9a;
+  outline: none;
+}
+
+/* Button style consistent with your nav-button / buttons */
+button {
+  width: 50%;
+  background-color: #6a1b9a;
+  color: white;
+  font-weight: 600;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+button:hover {
+  background-color: #4a148c;
+  transform: translateY(-3px);
+}
+
+/* Today's weather section */
+#today-forecast {
+  margin-top: 25px;
+  padding: 20px;
+  background: #f3e5f5;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(74, 20, 140, 0.15);
+  font-size: 1.1rem;
+  color: #4a148c;
+  font-weight: 600;
+}
+
+/* 5-day forecast container */
+#five-day-forecast {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+/* Each day box */
+/* .day {
+  background: #d1e7fd;
+  padding: 15px 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  flex: 1;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.95rem;
+} */
+
+.day {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  width: 160px;
+}
+
+
+/* Responsive for small screens */
+@media (max-width: 480px) {
+  #five-day-forecast {
+    flex-direction: column;
+  }
+  .day {
+    margin-bottom: 12px;
+  }
+}
+
+.weather-display {
+  text-align: center;
+  margin-top: 30px;
+}
+
+#weatherIcon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+#weatherText {
+  font-size: 1.2em;
+  color: #2c3e50;
+}
+
+
+  </style>
+</head>
+<body>
+  <h1>Weather Forecast</h1>
+  <input type="text" id="city-input" placeholder="Enter city name" />
+  <button id="get-weather">Get Weather</button>
+
+  <div id="today-forecast"></div>
+  <!-- <div class="weather-display">
+    <img id="weatherIcon" src="" alt="Weather Icon" />
+    <h2 id="weatherText">Weather info will appear here</h2>
+  </div> -->
+
+  <div id="five-day-forecast"></div>
+
+  <script src="new2.js"></script>
+</body>
+</html>
